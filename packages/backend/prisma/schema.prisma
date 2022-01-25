@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// * * * * * *
+// * Below types must be the same as the GraphQL types!
+// * * * * * *
+
+enum Datacenter {
+  Elemental
+  Gaia
+  Mana
+  Chaos
+  Light
+  Aether
+  Primal
+  Crystal
+}
+
+model User {
+  id                          String  @id @default(uuid())
+  email                       String  @unique
+  password                    String
+  pseudo                      String
+  avatar                      String?
+  datacenter                  Datacenter
+  server                      String
+  alerts                      Alert[]
+  retainers                   String[]
+}
+
+model Alert {
+  id                          String @id @default(uuid())
+  item_id                     String
+  market_helper_activated     Boolean
+  minimum_margin              Int?
+  minimum_price               Int?
+  hqOnly                      Boolean
+  user                        User  @relation(fields: [userId], references: [id])
+  userId                      String
+}

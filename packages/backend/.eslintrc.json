@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+      }
+    }
+  },
+  "extends": "../../.eslintrc.json",
+  "rules": {
+    "class-methods-use-this":"off",
+    "no-console": "off",
+    "no-useless-constructor": "off",
+    "no-empty-function": "off"
+  },
+  "ignorePatterns": "**/*.schema.ts"
+}

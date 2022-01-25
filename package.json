@@ -1,0 +1,23 @@
+{
+  "name": "ffxiv-market-helper",
+  "version": "1.0.0",
+  "description": "A simple FFXIV tool for multi-servers buy-and-resell",
+  "main": "index.js",
+  "author": "Louis Ledoux",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "delete-eslint-cache": "find . -name '*.eslintcache' -type f -delete ",
+    "delete-node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "clean": "yarn run delete-eslint-cache && yarn run delete-node-modules && yarn"
+  },
+  "dependencies": {
+    "yarn": "^1.22.17"
+  },
+  "devDependencies": {
+    "eslint": "^7.22.0"
+  }
+}

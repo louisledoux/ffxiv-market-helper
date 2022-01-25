@@ -1,0 +1,8 @@
+{
+  "eslint.workingDirectories": [
+    "packages/backend",
+    "packages/api-client",
+    "packages/electron-client",
+    "packages/library"
+  ]
+}
