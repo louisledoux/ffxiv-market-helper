@@ -6,6 +6,7 @@ type IDatacenter =
 'Light' |
 'Aether' |
 'Primal' |
-'Crystal';
+'Crystal' |
+'Materia';
 
 export { IDatacenter };
