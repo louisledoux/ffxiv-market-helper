@@ -1,4 +1,5 @@
 // GraphQL imports
+import { AuthModule } from '@auth/auth.module';
 import { RATE_LIMIT_MAX } from '@environments/application';
 import { MarketDataModule } from '@models/market-data/market-data.module';
 import { UserModule } from '@models/user/user.module';
@@ -19,6 +20,7 @@ import { GraphqlService } from './config/graphql/graphql.service';
       limit: RATE_LIMIT_MAX,
     }),
     UserModule,
+    AuthModule,
     MarketDataModule,
   ],
 })

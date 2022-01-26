@@ -1,5 +1,5 @@
 import { Request, Response, CookieOptions } from 'express';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 import { Logger } from '@nestjs/common';
 import { AuthenticationError } from 'apollo-server-errors';
 import { User } from '@prisma/client';
@@ -32,7 +32,7 @@ export function generateTokenSettings() {
 }
 
 export function createToken(
-  user: Omit<User, 'locale_id' | 'avatar'>,
+  user: Omit<User, 'avatar' | 'password'>,
   tokenOptions: jwt.SignOptions = {},
 ): string {
   const tokenSettings = { ...generateTokenSettings(), ...tokenOptions };

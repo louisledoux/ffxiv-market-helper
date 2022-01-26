@@ -18,6 +18,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
+      "@auth/*": ["src/auth/*"],
       "@environments/*": ["src/environments/*"],
       "@constants/*": ["src/constants/*"],
       "@utils/*": ["src/utils/*"],

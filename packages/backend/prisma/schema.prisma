@@ -23,6 +23,7 @@ enum Datacenter {
   Aether
   Primal
   Crystal
+  Materia
 }
 
 model User {

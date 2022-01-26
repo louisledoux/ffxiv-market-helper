@@ -64,17 +64,7 @@ export class MarketDataService {
    */
   async returnItemMarketData(itemID: number, userId: string): Promise<MarketData> {
     // 1. Get user and Universalis data
-    // const userData = await this.userService.findById(userId);
-    const userData: IUser = {
-      id: '1',
-      email: 'test@email.com',
-      password: 'test',
-      pseudo: 'La fatigue',
-      datacenter: 'Chaos',
-      server: 'Louisoix',
-      alerts: [],
-      retainers: [],
-    };
+    const userData = await this.userService.findById(userId);
 
     const {
       userServerMarketData,
