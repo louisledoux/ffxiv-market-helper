@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
 import { IUser } from './interfaces/user.interface';
 
@@ -9,6 +9,15 @@ export class UserService {
   async findByEmail(email: string): Promise<IUser> {
     const user = await this.userDto.oneByEmail({ email });
     // Error handled in the authService.ts validateUser method
+    return user;
+  }
+
+  async findById(id: string): Promise<IUser> {
+    const user = await this.userDto.oneById({ id });
+    if (!user) {
+      const error = { User: ' not found' };
+      throw new HttpException({ error }, 401);
+    }
     return user;
   }
 }

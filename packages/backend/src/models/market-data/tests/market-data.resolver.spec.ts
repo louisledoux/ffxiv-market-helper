@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UniversalisResolver } from '../universalis.resolver';
+import { MarketDataResolver } from '../market-data.resolver';
 
-describe('UniversalisResolver', () => {
-  let resolver: UniversalisResolver;
+describe('MarketDataResolver', () => {
+  let resolver: MarketDataResolver;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [UniversalisResolver],
+      providers: [MarketDataResolver],
     }).compile();
 
-    resolver = module.get<UniversalisResolver>(UniversalisResolver);
+    resolver = module.get<MarketDataResolver>(MarketDataResolver);
   });
 
   it('should be defined', () => {

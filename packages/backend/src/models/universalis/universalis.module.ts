@@ -1,8 +1,10 @@
+import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
-import { UniversalisResolver } from './universalis.resolver';
 import { UniversalisService } from './universalis.service';
 
 @Module({
-  providers: [UniversalisResolver, UniversalisService]
+  imports: [HttpModule],
+  providers: [UniversalisService],
+  exports: [UniversalisService],
 })
 export class UniversalisModule {}

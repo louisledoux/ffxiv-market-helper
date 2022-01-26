@@ -20,4 +20,15 @@ export class UserDto {
       },
     });
   }
+
+  async oneById(
+    id: Prisma.UserWhereUniqueInput,
+  ): Promise<UserWithAlerts | null> {
+    return this.prisma.user.findUnique({
+      where: id,
+      include: {
+        alerts: true,
+      },
+    });
+  }
 }

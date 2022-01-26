@@ -1,8 +1,7 @@
 {
   "name": "ffxiv-market-helper",
   "version": "1.0.0",
-  "description": "A simple FFXIV tool for multi-servers buy-and-resell",
-  "main": "index.js",
+  "description": "An open-source tool for buy-and-resell trading in FFXIV",
   "author": "Louis Ledoux",
   "license": "MIT",
   "private": true,
@@ -15,6 +14,7 @@
     "clean": "yarn run delete-eslint-cache && yarn run delete-node-modules && yarn"
   },
   "dependencies": {
+    "lerna": "^4.0.0",
     "yarn": "^1.22.17"
   },
   "devDependencies": {
