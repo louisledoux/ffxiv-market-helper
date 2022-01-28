@@ -1,4 +1,9 @@
-import { Args, Query, Resolver } from '@nestjs/graphql';
+import { AuthGuard } from '@auth/guards/auth.guard';
+import { UseGuards } from '@nestjs/common';
+import {
+  Args, Context, Query, Resolver,
+} from '@nestjs/graphql';
+import { IContext } from '@utils/context/interface/context.interface';
 import { IUser } from './interfaces/user.interface';
 import { UserService } from './user.service';
 
@@ -13,5 +18,13 @@ export class UserResolver {
     @Args('email', { type: () => String }) email: string,
   ): Promise<IUser> {
     return this.userService.findByEmail(email);
+  }
+
+  @Query(() => IUser)
+  @UseGuards(AuthGuard)
+  async getUserData(
+    @Context() context: IContext,
+  ): Promise<IUser> {
+    return this.userService.findById(context.userId);
   }
 }
