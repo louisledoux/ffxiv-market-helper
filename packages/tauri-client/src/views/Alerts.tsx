@@ -12,14 +12,14 @@ const alert = {
 };
 
 function Alerts() {
+  // TODO: create the dynamic alert CRUD linking with backend here!
   return (
-    // TODO: move the margin div into the Layout component once the auth logic is done
-    <div className="mt-8">
+    <>
       <AlertHeader />
       <AlertCard alert={alert} />
       <AlertCard alert={alert} />
       <AlertCard alert={alert} />
-    </div>
+    </>
   );
 }
 

@@ -19,3 +19,8 @@
     }
   }
 }
+
+@font-face {
+  font-family: final-fantasy;
+  src: url(./assets/fonts/finalf.ttf);
+}

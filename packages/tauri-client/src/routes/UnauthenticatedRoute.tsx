@@ -5,7 +5,7 @@ import { RoutesEnum } from './Routes.enum';
 function UnauthenticatedRoute() {
   const { isLoggedIn, loading } = useGetUserData();
   if (loading) { return (<>Loading...</>); }
-  return isLoggedIn ? <Navigate to={RoutesEnum.LOGIN} /> : <Outlet />;
+  return isLoggedIn ? <Navigate to={RoutesEnum.ALERTS} /> : <Outlet />;
 }
 
 export { UnauthenticatedRoute };

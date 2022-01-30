@@ -18,6 +18,9 @@ module.exports = {
         small: ['0.65rem', '0.8rem'],
         tiny: ['0.7rem', 'O.85rem'],
       },
+      fontFamily: {
+        fantasy: ['final-fantasy', 'serif'],
+      },
     },
   },
   plugins: [],

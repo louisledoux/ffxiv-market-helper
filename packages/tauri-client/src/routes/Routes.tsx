@@ -1,4 +1,4 @@
-import { Route, Routes as Switch } from 'react-router-dom';
+import { Route, Routes as Switch, useLocation } from 'react-router-dom';
 import { Alerts } from '../views/Alerts';
 import { Layout } from '../containers/Layout';
 import { PrivateRoute } from './PrivateRoute';
@@ -9,6 +9,7 @@ import { Signup } from '../views/auth/Signup';
 import { ResetPassword } from '../views/auth/ResetPassword';
 
 function Routes() {
+  const location = useLocation();
   return (
     <Switch>
       <Route path="" element={<PrivateRoute />}>
