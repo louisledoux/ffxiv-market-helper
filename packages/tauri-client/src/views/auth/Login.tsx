@@ -1,3 +1,4 @@
+import { Disclaimer } from '../../components/common/Disclaimer';
 import { MarketHelper } from '../../components/market-helper/MarketHelper';
 import { Navbar } from '../../components/navigation/Navbar';
 import { ItemTable } from '../../components/table/ItemTable';
@@ -8,7 +9,7 @@ function Login() {
       <Navbar />
       <MarketHelper />
       <ItemTable />
-      <div className="mb-8" />
+      <Disclaimer />
     </>
   );
 }
