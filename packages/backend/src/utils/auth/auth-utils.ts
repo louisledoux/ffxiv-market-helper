@@ -20,7 +20,7 @@ export const COOKIE_SETTINGS: CookieOptions = {
   // and won't be usable outside of my domain
   sameSite: 'none',
   // HTTPS?
-  secure: true,
+  secure: false,
 };
 
 // Cache issues led to create this function to make sure the emittedAt key is always regenerated

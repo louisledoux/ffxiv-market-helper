@@ -1,7 +1,14 @@
+import { getItemMarketData_getItemMarketData } from '../../api/types/getItemMarketData';
 import { Card } from '../common/Card';
 import { ItemRow } from './ItemRow';
 
-function ItemTable() {
+type IProps = {
+  itemMarketData: getItemMarketData_getItemMarketData | undefined,
+}
+function ItemTable({
+  itemMarketData,
+}: IProps) {
+  const serversData = itemMarketData?.serversData;
   return (
     <Card>
       <div className="h-72 pr-2 scrollbar overflow-auto">
@@ -15,18 +22,13 @@ function ItemTable() {
             </tr>
           </thead>
           <tbody>
-            <ItemRow />
-            <ItemRow />
-            <ItemRow />
-            <ItemRow />
-            <ItemRow />
-            <ItemRow />
-            <ItemRow />
-            <ItemRow />
-            <ItemRow />
-            <ItemRow />
-            <ItemRow />
-            <ItemRow />
+            {serversData?.map((serverData) => (
+              <ItemRow
+                key={serverData.serverName}
+                serverData={serverData}
+                userServer={itemMarketData?.userServer}
+              />
+            ))}
           </tbody>
         </table>
 

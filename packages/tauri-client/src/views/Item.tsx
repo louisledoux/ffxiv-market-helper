@@ -1,5 +1,0 @@
-function ItemMarketData() {
-
-}
-
-export { ItemMarketData };

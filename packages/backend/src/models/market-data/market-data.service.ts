@@ -187,7 +187,7 @@ export class MarketDataService {
         currentPrice: serverMarketData.pricePerUnit,
         isHq: serverMarketData.hq,
         quantity: serverMarketData.quantity,
-        timestamps: serverMarketData.lastReviewTime,
+        timestamps: datacenterMarketData.lastUploadTime,
         potentialProfit,
       });
     }

@@ -14,6 +14,7 @@ interface IProps {
   required: boolean;
   dark?: boolean | null;
   search?: boolean | null;
+  value?: string | undefined;
 }
 
 function Input({
@@ -27,6 +28,7 @@ function Input({
   error,
   dark,
   search,
+  value,
 }: IProps) {
   return (
     <label htmlFor={id} className="relative flex flex-col w-full">
@@ -49,6 +51,7 @@ function Input({
         type={type}
         placeholder={placeholder}
         {...register(name, { required })}
+        defaultValue={value}
         className={`
           ${dark ? 'bg-darkBackground' : 'bg-lightBackground'}
           peer border rounded-md focus:outline-none py-2 pl-5 pr-8
@@ -64,6 +67,7 @@ Input.defaultProps = {
   error: null,
   dark: false,
   search: false,
+  value: undefined,
 };
 
 export { Input };

@@ -1,6 +1,7 @@
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useLogin } from '../../api/hooks/useLogin';
+import { LoginMutationVariables } from '../../api/types/LoginMutation';
 import { Card } from '../../components/common/Card';
 import { Disclaimer } from '../../components/common/Disclaimer';
 import { Input } from '../../components/inputs/Input';
@@ -15,11 +16,11 @@ function Login() {
     },
   });
 
-  const onSubmit = (values: any) => {
+  const onSubmit: SubmitHandler<LoginMutationVariables> = (data: LoginMutationVariables) => {
     submitLogin({
       variables: {
-        ...values,
-        email: values.email.trim(),
+        ...data,
+        email: data.email.trim(),
       },
     });
   };

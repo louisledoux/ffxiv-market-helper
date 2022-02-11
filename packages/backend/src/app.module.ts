@@ -3,6 +3,7 @@ import { AuthModule } from '@auth/auth.module';
 import { RATE_LIMIT_MAX } from '@environments/application';
 import { MarketDataModule } from '@models/market-data/market-data.module';
 import { UserModule } from '@models/user/user.module';
+import { XivApiModule } from '@models/xiv-api/xiv-api.module';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ThrottlerModule } from '@nestjs/throttler';
@@ -21,6 +22,7 @@ import { GraphqlService } from './config/graphql/graphql.service';
     }),
     UserModule,
     AuthModule,
+    XivApiModule,
     MarketDataModule,
   ],
 })

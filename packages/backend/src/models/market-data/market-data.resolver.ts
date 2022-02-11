@@ -1,3 +1,5 @@
+import { AuthGuard } from '@auth/guards/auth.guard';
+import { UseGuards } from '@nestjs/common';
 import {
   Args, Context, Resolver, Query, Int,
 } from '@nestjs/graphql';
@@ -12,10 +14,12 @@ export class MarketDataResolver {
   ) {}
 
   @Query(() => MarketData)
+  @UseGuards(AuthGuard)
   async getItemMarketData(
     @Args('itemID', { type: () => Int }) itemID: number,
     @Context() context: IContext,
   ): Promise<MarketData> {
+    console.log(context.userId);
     return this.marketDataService.returnItemMarketData(itemID, context.userId);
   }
 }

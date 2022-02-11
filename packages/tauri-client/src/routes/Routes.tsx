@@ -1,4 +1,4 @@
-import { Route, Routes as Switch, useLocation } from 'react-router-dom';
+import { Route, Routes as Switch } from 'react-router-dom';
 import { Alerts } from '../views/Alerts';
 import { Layout } from '../containers/Layout';
 import { PrivateRoute } from './PrivateRoute';
@@ -7,14 +7,15 @@ import { UnauthenticatedRoute } from './UnauthenticatedRoute';
 import { Login } from '../views/auth/Login';
 import { Signup } from '../views/auth/Signup';
 import { ResetPassword } from '../views/auth/ResetPassword';
+import { ItemMarketData } from '../views/ItemMarketData';
 
 function Routes() {
-  const location = useLocation();
   return (
     <Switch>
       <Route path="" element={<PrivateRoute />}>
         <Route path="" element={<Layout />}>
           <Route path={RoutesEnum.ALERTS} element={<Alerts />} />
+          <Route path={`${RoutesEnum.ITEM}/:itemID`} element={<ItemMarketData />} />
         </Route>
       </Route>
 
