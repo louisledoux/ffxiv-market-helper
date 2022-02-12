@@ -1,35 +1,67 @@
+import _ from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getItemMarketData_getItemMarketData } from '../../api/types/getItemMarketData';
+import { convertTimestamps } from '../../services/time';
 import { Card } from '../common/Card';
 import { Advisor } from './Advisor';
 
-function MarketHelper() {
+type IProps = {
+  itemMarketData: getItemMarketData_getItemMarketData,
+}
+function MarketHelper({
+  itemMarketData,
+}: IProps) {
+  const { marketHelper, userServer, userSellOrders } = itemMarketData;
+  const userSellOrdersSum = _.sumBy(
+    userSellOrders,
+    (sellOrder) => sellOrder.pricePerUnit * sellOrder.quantity,
+  );
+
   return (
     <Card>
       <div>
         <Advisor />
         <div className="flex flex-row divide-x mt-3">
           <div className="w-2/3 pr-2">
-            {/* TODO: move line 13 from 19 into a child component */}
             <div className="flex flex-col">
               <div>
-                <FontAwesomeIcon className="text-xxs text-positive" icon={['fas', 'check-circle']} />
-                <span className="ml-1 text-xs">Il est acheté fréquemment</span>
+                <FontAwesomeIcon
+                  className={`text-xxs ${marketHelper.sellsFrequency.status ? 'text-positive' : 'text-negative'}`}
+                  icon={['fas', `${marketHelper.sellsFrequency.status ? 'check-circle' : 'times-circle'}`]}
+                />
+                <span className="ml-1 text-xs">
+                  {marketHelper.sellsFrequency.status ? 'Il est acheté fréquemment' : "Il n'est pas acheté fréquemment"}
+                </span>
               </div>
-              <span className="ml-3 text-small text-neutralGrey">(258 ordres d’achats en 24h)</span>
+              <span className="ml-3 text-small text-neutralGrey">
+                {`(${marketHelper.sellsFrequency.historyLength} ordres d’achats en 24h)`}
+              </span>
             </div>
             <div className="flex flex-col mt-2">
               <div>
-                <FontAwesomeIcon className="text-xxs text-positive" icon={['fas', 'check-circle']} />
-                <span className="ml-1 text-xs">Le cours du marché est stable</span>
+                <FontAwesomeIcon
+                  className={`text-xxs ${marketHelper.marketStability.status ? 'text-positive' : 'text-negative'}`}
+                  icon={['fas', `${marketHelper.marketStability.status ? 'check-circle' : 'times-circle'}`]}
+                />
+                <span className="ml-1 text-xs">
+                  {marketHelper.marketStability.status ? 'Le cours du marché est stable' : 'Le cours du marché est instable'}
+                </span>
               </div>
-              <span className="ml-3 text-small text-neutralGrey">(Evolution du prix de 10% en 24h)</span>
+              <span className="ml-3 text-small text-neutralGrey">{`(Evolution du prix de ${marketHelper.marketStability.marketEvolution}% en 24h)`}</span>
             </div>
             <div className="flex flex-col mt-2">
               <div>
-                <FontAwesomeIcon className="text-xxs text-positive" icon={['fas', 'check-circle']} />
-                <span className="text-xs ml-1">Le marché n’est pas saturé</span>
+                <FontAwesomeIcon
+                  className={`text-xxs ${marketHelper.marketSaturation.status ? 'text-positive' : 'text-negative'}`}
+                  icon={['fas', `${marketHelper.marketSaturation.status ? 'check-circle' : 'times-circle'}`]}
+                />
+                <span className="text-xs ml-1">
+                  {marketHelper.marketSaturation.status ? 'Le marché n’est pas saturé' : 'Le marché est saturé'}
+                </span>
               </div>
-              <span className="ml-3 text-small text-neutralGrey">(3 vendeurs, 14 ordres de vente)</span>
+              <span className="ml-3 text-small text-neutralGrey">
+                {`(${marketHelper.marketSaturation.uniqueSellers} vendeurs, ${marketHelper.marketSaturation.sellOrdersLength} ordres de vente)`}
+              </span>
             </div>
           </div>
           <div className="w-1/3 pl-2 flex flex-col justify-between">
@@ -37,16 +69,16 @@ function MarketHelper() {
               <div className="h-5">
                 <span className="text-xs">Mon serveur</span>
               </div>
-              <span className="text-xxs italic text-neutralGrey">(~20 min)</span>
-              <span className="text-small mt-1 italic text-neutralGrey">2 000 000 gils</span>
-              <span className="text-small italic text-neutralGrey">95% d’achats HQ</span>
+              <span className="text-xxs italic text-neutralGrey">{`(${convertTimestamps(userServer.timestamps)})`}</span>
+              <span className="text-small mt-1 italic text-neutralGrey">{`${userServer.currentPrice.toLocaleString()} gils`}</span>
+              <span className="text-small italic text-neutralGrey">{`${userServer.hqBoughtPercentage?.toFixed(0)}% d’achats HQ`}</span>
             </div>
             <div className="flex flex-col">
               <div>
                 <span className="text-xs">Mes ordres</span>
               </div>
-              <span className="text-small italic text-neutralGrey">2 ordres de vente</span>
-              <span className="text-small italic text-neutralGrey">pour 264 695 gils</span>
+              <span className="text-small italic text-neutralGrey">{`${userSellOrders?.length} ordres de vente`}</span>
+              <span className="text-small italic text-neutralGrey">{`pour ${userSellOrdersSum.toLocaleString()} gils`}</span>
             </div>
           </div>
         </div>

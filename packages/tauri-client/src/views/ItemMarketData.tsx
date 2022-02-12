@@ -19,12 +19,18 @@ function ItemMarketData() {
       error={error}
       data={data}
     >
-      <>
-        <MarketHelper />
-        <ItemTable
-          itemMarketData={data?.getItemMarketData}
-        />
-      </>
+      <div>
+        {data && (
+        <>
+          <MarketHelper
+            itemMarketData={data.getItemMarketData}
+          />
+          <ItemTable
+            itemMarketData={data.getItemMarketData}
+          />
+        </>
+        )}
+      </div>
     </QueryResult>
   );
 }

@@ -95,7 +95,7 @@ export class MarketDataService {
     // TODO
     const marketHelper: MarketHelper = {
       sellsFrequency: {
-        status: true,
+        status: false,
         historyLength: 10,
       },
       marketStability: {

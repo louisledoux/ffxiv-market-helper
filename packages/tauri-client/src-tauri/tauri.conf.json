@@ -54,7 +54,7 @@
     "windows": [
       {
         "title": "FFXIV Market Helper",
-        "width": 360,
+        "width": 380,
         "height": 640,
         "resizable": true,
         "fullscreen": false

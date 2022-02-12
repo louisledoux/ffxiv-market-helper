@@ -11,9 +11,9 @@ export function convertTimestamps(timestamps: number) {
   timeElapsed /= 1000;
 
   if (timeElapsed > 86400) {
-    return `~${Math.trunc(timeElapsed / 86400)} days`;
+    return `~${Math.trunc(timeElapsed / 86400)} d`;
   } if (timeElapsed > 3600) {
-    return `~${Math.trunc(timeElapsed / 3600)} hours`;
+    return `~${Math.trunc(timeElapsed / 3600)} h`;
   }
   return `~${Math.trunc(timeElapsed / 60)} min`;
 }

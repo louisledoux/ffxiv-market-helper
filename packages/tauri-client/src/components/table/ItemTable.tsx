@@ -3,12 +3,12 @@ import { Card } from '../common/Card';
 import { ItemRow } from './ItemRow';
 
 type IProps = {
-  itemMarketData: getItemMarketData_getItemMarketData | undefined,
+  itemMarketData: getItemMarketData_getItemMarketData,
 }
 function ItemTable({
   itemMarketData,
 }: IProps) {
-  const serversData = itemMarketData?.serversData;
+  const { serversData } = itemMarketData;
   return (
     <Card>
       <div className="h-72 pr-2 scrollbar overflow-auto">

@@ -11,7 +11,6 @@ interface IProps {
 function QueryResult({
   loading, error, data, children,
 }: IProps) {
-  console.log(data);
   if (error) {
     return (
       <p>
