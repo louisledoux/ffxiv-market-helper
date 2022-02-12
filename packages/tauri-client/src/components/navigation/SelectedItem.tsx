@@ -31,7 +31,7 @@ function SelectedItem({
               <FontAwesomeIcon
                 className="
                   text-primary absolute inset-y-3 right-3
-                  transition ease-in-out hover:scale-110 duration-300
+                  transition ease-in-out hover:scale-110
                 "
                 icon={['fas', 'times-circle']}
               />

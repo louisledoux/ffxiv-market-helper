@@ -1,5 +1,6 @@
 import { ApolloError } from '@apollo/client';
 import React from 'react';
+import { LoadingSpinner } from '../icons/LoadingSpinner';
 
 interface QueryResultProps {
   loading: boolean,
@@ -21,7 +22,11 @@ function QueryResult({
     );
   }
   if (loading) {
-    return <>Loading...</>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <LoadingSpinner size="lg" />
+      </div>
+    );
   }
   if (!data) {
     return <>No data</>;

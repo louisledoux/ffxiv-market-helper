@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getXivApiSearchResults_getXivApiSearchResults_Results } from '../../api/types/getXivApiSearchResults';
 import { RoutesEnum } from '../../routes/Routes.enum';
 import { Card } from '../common/Card';
+import { LoadingSpinner } from '../icons/LoadingSpinner';
 
 interface SearchResultsProps {
   loading: boolean,
@@ -22,7 +23,12 @@ function SearchResults({
     <div className="absolute left-0 top-5 z-10 w-full">
       <Card>
         <div className="flex flex-col space-y-4 pr-2 max-h-80 overflow-auto scrollbar">
-          {loading && (<>Loading...</>)}
+          {loading && (
+            <div className="flex mx-2">
+              <LoadingSpinner />
+            </div>
+          )}
+          {!searchResults?.length && !loading && <>Aucun résultat</>}
           {searchResults?.sort(
             (a, b) => b.LevelItem - a.LevelItem,
           )
