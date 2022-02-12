@@ -6,5 +6,6 @@ import { XivApiService } from './xiv-api.service';
 @Module({
   imports: [HttpModule],
   providers: [XivApiResolver, XivApiService],
+  exports: [XivApiService],
 })
 export class XivApiModule {}

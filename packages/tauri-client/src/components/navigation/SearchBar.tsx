@@ -8,7 +8,7 @@ import { SettingsIcon } from '../icons/SettingsIcon';
 import { Input } from '../inputs/Input';
 import { SearchResults } from './SearchResults';
 
-function Navbar() {
+function SearchBar() {
   const { handleSubmit, register } = useForm();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isDisplayed, setIsDisplayed] = useState<boolean>(false);
@@ -31,8 +31,11 @@ function Navbar() {
 
   return (
     <div className="relative">
-      <div className="flex flex-row mt-7">
-        <form onSubmit={handleSubmit(searchResults)}>
+      <div className="flex flex-row justify-between gap-5 mt-7">
+        <form
+          className="flex-1"
+          onSubmit={handleSubmit(searchResults)}
+        >
           <Input
             label="Rechercher"
             placeholder="Rechercher un produit"
@@ -42,7 +45,6 @@ function Navbar() {
             required={false}
             id="query"
             search
-            value={searchQuery}
           />
         </form>
         <KofiIcon />
@@ -52,7 +54,6 @@ function Navbar() {
         <SearchResults
           loading={loading}
           searchResults={data?.getXivApiSearchResults.Results}
-          setSearchQuery={setSearchQuery}
           setIsDisplayed={setIsDisplayed}
         />
       )}
@@ -60,4 +61,4 @@ function Navbar() {
   );
 }
 
-export { Navbar };
+export { SearchBar };

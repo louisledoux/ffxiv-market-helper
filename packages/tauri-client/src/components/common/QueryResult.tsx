@@ -1,7 +1,7 @@
 import { ApolloError } from '@apollo/client';
 import React from 'react';
 
-interface IProps {
+interface QueryResultProps {
   loading: boolean,
   error: ApolloError | undefined,
   data: any,
@@ -10,7 +10,7 @@ interface IProps {
 
 function QueryResult({
   loading, error, data, children,
-}: IProps) {
+}: QueryResultProps) {
   if (error) {
     return (
       <p>

@@ -2,12 +2,12 @@ import { getItemMarketData_getItemMarketData } from '../../api/types/getItemMark
 import { Card } from '../common/Card';
 import { ItemRow } from './ItemRow';
 
-type IProps = {
+type ItemTableProps = {
   itemMarketData: getItemMarketData_getItemMarketData,
 }
 function ItemTable({
   itemMarketData,
-}: IProps) {
+}: ItemTableProps) {
   const { serversData } = itemMarketData;
   return (
     <Card>

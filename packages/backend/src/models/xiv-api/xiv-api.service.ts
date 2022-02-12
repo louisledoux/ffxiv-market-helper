@@ -2,6 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
+import { XivApiItemData } from './interfaces/xiv-api-item-data.interface';
 import { XivApiSearchResults } from './interfaces/xiv-api-search-results.interface';
 
 @Injectable()
@@ -21,6 +22,12 @@ export class XivApiService {
       `https://xivapi.com/search?string=${
         search
       }&indexes=Item&limit=250&string_algo=wildcard_plus&filters=IsUntradable=0&language=fr&columns=Name_*,LevelItem,ID,ItemSearchCategory.Name_*,IconHD`,
+    );
+  }
+
+  async getItemName(itemId: number): Promise<Observable<AxiosResponse<XivApiItemData>>> {
+    return this.httpService.get(
+      `https://xivapi.com/item/${itemId}?columns=Name_*,IconHD`,
     );
   }
 }

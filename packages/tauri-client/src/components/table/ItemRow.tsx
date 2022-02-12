@@ -1,15 +1,15 @@
 import { getItemMarketData_getItemMarketData_serversData, getItemMarketData_getItemMarketData_userServer } from '../../api/types/getItemMarketData';
-import { convertTimestamps } from '../../services/time';
+import { convertTimestamps } from '../../utils/time';
 import { HqIcon } from '../icons/HqIcon';
 
-type IProps = {
+type ItemRowProps = {
   serverData: getItemMarketData_getItemMarketData_serversData,
   userServer: getItemMarketData_getItemMarketData_userServer | undefined,
 }
 function ItemRow({
   serverData,
   userServer,
-}: IProps) {
+}: ItemRowProps) {
   const userServerPrice = userServer?.currentPrice || 0;
   const priceMarginPercentage = ((
     (userServerPrice - serverData.currentPrice) / serverData.currentPrice
@@ -34,7 +34,7 @@ function ItemRow({
           {(serverData.potentialProfit).toLocaleString()}
         </p>
         <p className={`text-tiny font-bold ${evolutionIsPositive ? 'text-positive' : ''} ${evolutionIsNegative ? 'text-negative' : ''}`}>
-          {`(${priceMarginPercentage.toFixed(0)}%)`}
+          {`(${evolutionIsPositive ? '+' : ''}${priceMarginPercentage.toFixed(0)}%)`}
         </p>
       </td>
     </tr>

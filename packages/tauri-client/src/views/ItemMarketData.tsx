@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useGetItemMarketData } from '../api/hooks/useGetItemMarketData';
 import { QueryResult } from '../components/common/QueryResult';
 import { MarketHelper } from '../components/market-helper/MarketHelper';
+import { SelectedItem } from '../components/navigation/SelectedItem';
 import { ItemTable } from '../components/table/ItemTable';
 
 function ItemMarketData() {
@@ -19,18 +20,26 @@ function ItemMarketData() {
       error={error}
       data={data}
     >
-      <div>
-        {data && (
-        <>
-          <MarketHelper
-            itemMarketData={data.getItemMarketData}
-          />
-          <ItemTable
-            itemMarketData={data.getItemMarketData}
-          />
-        </>
-        )}
-      </div>
+      <>
+        <SelectedItem
+          label="Résultat de la recherche"
+          itemName={data?.getItemMarketData.itemName || ''}
+        />
+        <div className="mt-8">
+          <div>
+            {data && (
+            <>
+              <MarketHelper
+                itemMarketData={data.getItemMarketData}
+              />
+              <ItemTable
+                itemMarketData={data.getItemMarketData}
+              />
+            </>
+            )}
+          </div>
+        </div>
+      </>
     </QueryResult>
   );
 }

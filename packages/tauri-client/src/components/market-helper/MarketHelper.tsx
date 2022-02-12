@@ -1,16 +1,16 @@
 import _ from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getItemMarketData_getItemMarketData } from '../../api/types/getItemMarketData';
-import { convertTimestamps } from '../../services/time';
+import { convertTimestamps } from '../../utils/time';
 import { Card } from '../common/Card';
 import { Advisor } from './Advisor';
 
-type IProps = {
+type MarketHelperProps = {
   itemMarketData: getItemMarketData_getItemMarketData,
 }
 function MarketHelper({
   itemMarketData,
-}: IProps) {
+}: MarketHelperProps) {
   const { marketHelper, userServer, userSellOrders } = itemMarketData;
   const userSellOrdersSum = _.sumBy(
     userSellOrders,

@@ -65,5 +65,5 @@ export interface UniversalisItem {
   stackSizeHistogramNQ: any;
   stackSizeHistogramHQ: any;
 
-  worldUploadTimes?: any;
+  worldUploadTimes?: Record<string, number>;
 }

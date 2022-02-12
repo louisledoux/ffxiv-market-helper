@@ -1,5 +1,6 @@
 import { AlertCard } from '../components/alert/AlertCard';
 import { AlertHeader } from '../components/alert/AlertHeader';
+import { SearchBar } from '../components/navigation/SearchBar';
 
 const alert = {
   __typename: 'IAlert',
@@ -15,10 +16,13 @@ function Alerts() {
   // TODO: create the dynamic alert CRUD linking with backend here!
   return (
     <>
-      <AlertHeader />
-      <AlertCard alert={alert} />
-      <AlertCard alert={alert} />
-      <AlertCard alert={alert} />
+      <SearchBar />
+      <div className="mt-8">
+        <AlertHeader />
+        <AlertCard alert={alert} />
+        <AlertCard alert={alert} />
+        <AlertCard alert={alert} />
+      </div>
     </>
   );
 }

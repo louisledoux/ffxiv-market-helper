@@ -9,6 +9,7 @@ export type UseGetItemMarketDataOptions = QueryHookOptions<
 
 export function useGetItemMarketData(itemMarketDataOptions: UseGetItemMarketDataOptions = {}) {
   return useQuery<getItemMarketData, getItemMarketDataVariables>(GET_ITEM_MARKET_DATA_QUERY, {
+    fetchPolicy: 'cache-and-network',
     ...itemMarketDataOptions,
   });
 }

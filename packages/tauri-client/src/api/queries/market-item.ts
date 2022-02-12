@@ -4,6 +4,7 @@ export const GET_ITEM_MARKET_DATA_QUERY = gql`
 query getItemMarketData($itemId: Int!) {
   getItemMarketData(itemID: $itemId) {
     itemID
+    itemName
     serversData {
       serverName
       currentPrice

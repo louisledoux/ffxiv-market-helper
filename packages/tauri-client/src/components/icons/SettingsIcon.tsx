@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function SettingsIcon() {
   return (
-    <div className="flex pl-4">
+    <div className="flex">
       <button
         type="button"
       >

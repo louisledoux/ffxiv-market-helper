@@ -65,6 +65,7 @@ export interface getItemMarketData_getItemMarketData_marketHelper {
 export interface getItemMarketData_getItemMarketData {
   __typename: "MarketData";
   itemID: number;
+  itemName: string;
   serversData: getItemMarketData_getItemMarketData_serversData[];
   userServer: getItemMarketData_getItemMarketData_userServer;
   userSellOrders: getItemMarketData_getItemMarketData_userSellOrders[] | null;

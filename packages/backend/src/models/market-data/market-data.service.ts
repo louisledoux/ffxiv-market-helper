@@ -6,6 +6,7 @@ import { UserService } from '@models/user/user.service';
 import { Injectable } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
 import { datacenters } from '@utils/ffxiv/datacenters';
+import { XivApiService } from '@models/xiv-api/xiv-api.service';
 import { MarketData } from './interfaces/market-data.interface';
 import { SellOrder } from './interfaces/sell-order.interface';
 import { ServerData } from './interfaces/server-data.interface';
@@ -15,6 +16,7 @@ import { MarketHelper } from './interfaces/market-helper.interface';
 export class MarketDataService {
   constructor(
     private readonly universalisService: UniversalisService,
+    private readonly xivApiService: XivApiService,
     private readonly userService: UserService,
   ) {}
 
@@ -72,6 +74,9 @@ export class MarketDataService {
       historyData,
     } = await this.getUniversalisData(itemID, userData);
 
+    const itemObservable$ = await this.xivApiService.getItemName(itemID);
+    const itemData = (await firstValueFrom(itemObservable$)).data;
+
     // 2. Get user server data
     const userServerData = this.retrieveUserServerMarketData(
       historyData,
@@ -111,6 +116,7 @@ export class MarketDataService {
     // 6. Return the final object
     return {
       itemID,
+      itemName: itemData.Name_fr,
       serversData: datacenterData,
       userServer: userServerData,
       userSellOrders,
@@ -187,7 +193,7 @@ export class MarketDataService {
         currentPrice: serverMarketData.pricePerUnit,
         isHq: serverMarketData.hq,
         quantity: serverMarketData.quantity,
-        timestamps: datacenterMarketData.lastUploadTime,
+        timestamps: datacenterMarketData.worldUploadTimes[serverMarketData.worldID],
         potentialProfit,
       });
     }

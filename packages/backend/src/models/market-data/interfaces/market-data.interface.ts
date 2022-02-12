@@ -8,6 +8,9 @@ export abstract class MarketData {
   @Field(() => Int)
   itemID: number;
 
+  @Field(() => String)
+  itemName: string;
+
   @Field(() => [ServerData])
   serversData: ServerData[];
 

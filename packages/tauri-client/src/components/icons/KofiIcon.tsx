@@ -1,6 +1,6 @@
 function KofiIcon() {
   return (
-    <div className="flex pl-4">
+    <div className="flex">
       <button
         type="button"
       >
