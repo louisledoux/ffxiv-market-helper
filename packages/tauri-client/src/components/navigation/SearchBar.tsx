@@ -23,8 +23,8 @@ function SearchBar() {
     fetchPolicy: 'no-cache',
   });
 
-  const searchResults = ({ query }: getXivApiSearchResultsVariables) => {
-    setSearchQuery(query);
+  const searchResults = (queryData: { [x: string]: string; }) => {
+    setSearchQuery(queryData.query);
     setIsDisplayed(true);
     fetchXivData();
   };

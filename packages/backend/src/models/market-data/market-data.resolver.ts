@@ -19,7 +19,6 @@ export class MarketDataResolver {
     @Args('itemID', { type: () => Int }) itemID: number,
     @Context() context: IContext,
   ): Promise<MarketData> {
-    console.log(context.userId);
     return this.marketDataService.returnItemMarketData(itemID, context.userId);
   }
 }

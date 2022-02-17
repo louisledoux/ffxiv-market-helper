@@ -1,10 +1,10 @@
 {
   "package": {
-    "productName": "tauri-client",
+    "productName": "FFXIV Market Helper",
     "version": "0.1.0"
   },
   "build": {
-    "distDir": "../build",
+    "distDir": "../dist",
     "devPath": "http://localhost:3000",
     "beforeDevCommand": "",
     "beforeBuildCommand": ""
@@ -56,7 +56,7 @@
         "title": "FFXIV Market Helper",
         "width": 380,
         "height": 640,
-        "resizable": true,
+        "resizable": false,
         "fullscreen": false
       }
     ],

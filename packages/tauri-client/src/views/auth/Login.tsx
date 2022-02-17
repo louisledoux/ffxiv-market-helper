@@ -16,7 +16,8 @@ function Login() {
     },
   });
 
-  const onSubmit: SubmitHandler<LoginMutationVariables> = (data: LoginMutationVariables) => {
+  // TODO: find a way to remove the any type here, and solve the typescript error
+  const onSubmit = (data: any) => {
     submitLogin({
       variables: {
         ...data,
