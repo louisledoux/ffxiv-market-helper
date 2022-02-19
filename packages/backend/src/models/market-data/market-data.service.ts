@@ -7,15 +7,18 @@ import { Injectable } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
 import { datacenters } from '@utils/ffxiv/datacenters';
 import { XivApiService } from '@models/xiv-api/xiv-api.service';
+import { ONE_DAY } from '@constants/time';
 import { MarketData } from './interfaces/market-data.interface';
 import { SellOrder } from './interfaces/sell-order.interface';
 import { ServerData } from './interfaces/server-data.interface';
 import { MarketHelper } from './interfaces/market-helper.interface';
+import { MarketHelperService } from './market-helper.service';
 
 @Injectable()
 export class MarketDataService {
   constructor(
     private readonly universalisService: UniversalisService,
+    private readonly marketHelperService: MarketHelperService,
     private readonly xivApiService: XivApiService,
     private readonly userService: UserService,
   ) {}
@@ -48,6 +51,7 @@ export class MarketDataService {
       .universalisService.fetchItemMarketHistory({
         itemID,
         serverOrDc: userData.datacenter,
+        statsWithin: ONE_DAY,
       });
     const historyData = (await firstValueFrom(historyObservable$)).data;
 
@@ -97,22 +101,11 @@ export class MarketDataService {
     );
 
     // 5. Get Market Helper results from Universalis data
-    // TODO
-    const marketHelper: MarketHelper = {
-      sellsFrequency: {
-        status: false,
-        historyLength: 10,
-      },
-      marketStability: {
-        status: true,
-        marketEvolution: 2,
-      },
-      marketSaturation: {
-        status: true,
-        sellOrdersLength: 10,
-        uniqueSellers: 2,
-      },
-    };
+    const marketHelper: MarketHelper = this.calculateMarketHelper(
+      userServerMarketData,
+      userServerData,
+      historyData,
+    );
     // 6. Return the final object
     return {
       itemID,
@@ -201,7 +194,26 @@ export class MarketDataService {
   }
 
   // TODO
-  calculateMarketHelper() {
+  calculateMarketHelper(
+    userServerMarketData: UniversalisItem,
+    userServerData: ServerData,
+    historyData: UniversalisHistory,
+  ): MarketHelper {
+    const sellsFrequency = this.marketHelperService.checkSellsFrequency(historyData);
 
+    const marketStability = this.marketHelperService.checkMarketStability(
+      userServerData,
+      historyData,
+    );
+
+    const marketSaturation = this.marketHelperService.checkMarketSaturation(
+      userServerMarketData,
+    );
+
+    return {
+      sellsFrequency,
+      marketStability,
+      marketSaturation,
+    };
   }
 }
