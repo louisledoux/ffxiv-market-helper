@@ -8,6 +8,7 @@ export const NODE_ENV = process.env.NODE_ENV || 'development';
 const { END_POINT } = process.env;
 const GRAPHQL_DEPTH_LIMIT: number = +process.env.GRAPHQL_DEPTH_LIMIT;
 const PORT: number = +process.env.PORT || 4000;
+const { FRONTEND_URL } = process.env;
 const RATE_LIMIT_MAX: number = +process.env.RATE_LIMIT_MAX;
 
 // Bcrypt variables
@@ -20,6 +21,7 @@ export {
   END_POINT,
   GRAPHQL_DEPTH_LIMIT,
   PORT,
+  FRONTEND_URL,
   RATE_LIMIT_MAX,
   BCRYPT_SALT,
   APP_TOKEN_SECRET,
