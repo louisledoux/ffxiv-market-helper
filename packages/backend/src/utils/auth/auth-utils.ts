@@ -17,8 +17,6 @@ export const COOKIE_SETTINGS: CookieOptions = {
   path: '/',
   // this cookie won't be readable by the browser
   httpOnly: true,
-  // and won't be usable outside of my domain
-  sameSite: 'none',
   // HTTPS?
   secure: false,
 };
