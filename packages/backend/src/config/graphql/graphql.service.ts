@@ -21,7 +21,7 @@ export class GraphqlService implements GqlOptionsFactory {
             credentials: true,
           }
           : {
-            origin: [FRONTEND_URL, 'https://studio.apollographql.com'],
+            origin: [FRONTEND_URL, 'http://localhost:3000', 'https://studio.apollographql.com'],
             credentials: true,
           },
       context: appContext,
