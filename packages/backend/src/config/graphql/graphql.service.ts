@@ -1,5 +1,5 @@
 import {
-  END_POINT, FRONTEND_URL, GRAPHQL_DEPTH_LIMIT, NODE_ENV,
+  END_POINT, GRAPHQL_DEPTH_LIMIT,
 } from '@environments/application';
 import { Injectable, Logger } from '@nestjs/common';
 import { GqlModuleOptions, GqlOptionsFactory } from '@nestjs/graphql';
@@ -14,16 +14,10 @@ export class GraphqlService implements GqlOptionsFactory {
     return {
       autoSchemaFile: true,
       path: `/${END_POINT!}`,
-      cors:
-        NODE_ENV === 'production'
-          ? {
-            origin: FRONTEND_URL,
-            credentials: true,
-          }
-          : {
-            origin: [FRONTEND_URL, 'https://studio.apollographql.com'],
-            credentials: true,
-          },
+      cors: {
+        origin: '*',
+        credentials: true,
+      },
       context: appContext,
       // import schemaDirectives here if needed
       // import directive resolvers here if needed

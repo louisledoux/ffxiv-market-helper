@@ -11,7 +11,8 @@
   "scripts": {
     "delete-eslint-cache": "find . -name '*.eslintcache' -type f -delete ",
     "delete-node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
-    "clean": "yarn run delete-eslint-cache && yarn run delete-node-modules && yarn"
+    "clean": "yarn run delete-eslint-cache && yarn run delete-node-modules && yarn",
+    "backend:prod": "cd packages/backend && yarn start:prod"
   },
   "dependencies": {
     "lerna": "^4.0.0",
