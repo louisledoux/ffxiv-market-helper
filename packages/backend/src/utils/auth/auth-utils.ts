@@ -17,8 +17,10 @@ export const COOKIE_SETTINGS: CookieOptions = {
   path: '/',
   // this cookie won't be readable by the browser
   httpOnly: true,
+  // and won't be usable outside of my domain
+  sameSite: 'none',
   // HTTPS?
-  secure: false,
+  secure: true,
 };
 
 // Cache issues led to create this function to make sure the emittedAt key is always regenerated
