@@ -28,7 +28,7 @@ export class AuthService {
     return res;
   }
 
-  async signup(args: SignupArgs, context: IContext): Promise<Omit<IUser, 'alerts' | 'password'>> {
+  async signup(args: SignupArgs, context: IContext): Promise<Omit<IUser, 'password'>> {
     const password = await hashPassword(args.password);
     const user = await this.userService.createOneUser({
       ...args,
@@ -38,7 +38,10 @@ export class AuthService {
     context.res.cookie('ffxiv_market_helper_session', token, COOKIE_SETTINGS);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: dbPassword, ...rest } = user;
-    return rest;
+    return {
+      ...rest,
+      alerts: [],
+    };
   }
 
   async logout(context: IContext): Promise<boolean> {

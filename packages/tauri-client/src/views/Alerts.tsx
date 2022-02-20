@@ -19,9 +19,10 @@ function Alerts() {
       <SearchBar />
       <div className="mt-8">
         <AlertHeader />
+        <p className="mt-2 text-neutralGrey italic">Coming soon...</p>
+        {/* <AlertCard alert={alert} />
         <AlertCard alert={alert} />
-        <AlertCard alert={alert} />
-        <AlertCard alert={alert} />
+        <AlertCard alert={alert} /> */}
       </div>
     </>
   );

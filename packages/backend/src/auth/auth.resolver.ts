@@ -36,7 +36,7 @@ export class AuthResolver {
   async signup(
     @Args() args: SignupArgs,
     @Context() context: IContext,
-  ): Promise<Omit<IUser, 'alerts' | 'password'>> {
+  ): Promise<Omit<IUser, 'password'>> {
     Logger.verbose('Trying to signup user', args.email);
     const email = args.email.toLowerCase().trim();
     const user = await this.authService.signup({

@@ -17,7 +17,9 @@ function QueryResult({
       <p>
         ERROR:
         {' '}
+        {error.name}
         {error.message}
+        {error.extraInfo}
       </p>
     );
   }

@@ -9,7 +9,7 @@ export interface UniversalisParameters {
   serverOrDc: string,
   itemID: number,
   isHq?: boolean,
-  statsWithin?: number,
+  entriesWithin?: number,
 }
 
 @Injectable()
@@ -19,16 +19,16 @@ export class UniversalisService {
   ) {}
 
   async fetchItemMarketData({
-    serverOrDc, itemID, isHq, statsWithin,
+    serverOrDc, itemID, isHq, entriesWithin,
   }: UniversalisParameters): Promise<Observable<AxiosResponse<UniversalisItem>>> {
     return this.httpService
-      .get(`https://universalis.app/api/${serverOrDc}/${itemID}${isHq ? '?hq=1' : ''}${statsWithin ? `?statsWithin=${statsWithin}` : ''}`);
+      .get(`https://universalis.app/api/${serverOrDc}/${itemID}${isHq ? '?hq=1' : ''}${entriesWithin ? `?entriesWithin=${entriesWithin}` : ''}`);
   }
 
   async fetchItemMarketHistory({
-    serverOrDc, itemID, statsWithin,
+    serverOrDc, itemID, entriesWithin,
   }: UniversalisParameters): Promise<Observable<AxiosResponse<UniversalisHistory>>> {
     return this.httpService
-      .get(`https://universalis.app/api/history/${serverOrDc}/${itemID}${statsWithin ? `?statsWithin=${statsWithin}` : ''}`);
+      .get(`https://universalis.app/api/history/${serverOrDc}/${itemID}${entriesWithin ? `?entriesWithin=${entriesWithin}` : ''}`);
   }
 }

@@ -50,8 +50,9 @@ export class MarketDataService {
     const historyObservable$ = await this
       .universalisService.fetchItemMarketHistory({
         itemID,
-        serverOrDc: userData.datacenter,
-        statsWithin: ONE_DAY,
+        serverOrDc: userData.server,
+        // ? We divide by 1000 to get ONE_DAY in seconds, as asked by Universalis API
+        entriesWithin: ONE_DAY / 1000,
       });
     const historyData = (await firstValueFrom(historyObservable$)).data;
 
@@ -129,7 +130,7 @@ export class MarketDataService {
     for (const entry of historyData.entries) {
       if (entry.hq) hqCount += 1;
     }
-    const hqBoughtPercentage = ((hqCount / historyData.entries.length) * 100);
+    const hqBoughtPercentage = ((hqCount / (historyData.entries.length || 1)) * 100);
     if (hqCount >= historyData.entries.length / 2) {
       isHq = true;
       serverPriceToDisplay = serverData.listings.find(({ hq }) => hq === true);
@@ -193,14 +194,12 @@ export class MarketDataService {
     return datacenterData;
   }
 
-  // TODO
   calculateMarketHelper(
     userServerMarketData: UniversalisItem,
     userServerData: ServerData,
     historyData: UniversalisHistory,
   ): MarketHelper {
     const sellsFrequency = this.marketHelperService.checkSellsFrequency(historyData);
-
     const marketStability = this.marketHelperService.checkMarketStability(
       userServerData,
       historyData,

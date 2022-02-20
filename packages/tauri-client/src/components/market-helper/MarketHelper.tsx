@@ -20,7 +20,7 @@ function MarketHelper({
   return (
     <Card>
       <div>
-        <Advisor />
+        <Advisor marketHelper={marketHelper} />
         <div className="flex flex-row divide-x mt-3">
           <div className="w-2/3 pr-2">
             <div className="flex flex-col">

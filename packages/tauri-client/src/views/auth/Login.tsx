@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLogin } from '../../api/hooks/useLogin';
 import { LoginMutationVariables } from '../../api/types/LoginMutation';
 import { Card } from '../../components/common/Card';
@@ -74,7 +74,9 @@ function Login() {
                 </button>
               </div>
             </form>
-            <span className="text-xs mt-2 text-center">S&apos;inscrire</span>
+            <Link className="text-xs mt-2 text-center" to={RoutesEnum.SIGNUP}>
+              <span>S&apos;inscrire</span>
+            </Link>
           </div>
         </Card>
       </div>

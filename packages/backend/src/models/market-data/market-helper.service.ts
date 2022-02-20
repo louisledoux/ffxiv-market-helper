@@ -22,7 +22,7 @@ export class MarketHelperService {
     const historyLength = historyData.entries.length;
     // If we don't have at least one item sold per hour, then we send a status = false;
     const sellsFrequency = historyLength / 24;
-    if (sellsFrequency > 0) {
+    if (sellsFrequency > 1) {
       return {
         status: true,
         historyLength,
@@ -43,7 +43,7 @@ export class MarketHelperService {
     for (const entry of historyData.entries) {
       historyTotalPricePerUnitValue += entry.pricePerUnit;
     }
-    const historyPriceMedian = historyTotalPricePerUnitValue / historyData.entries.length;
+    const historyPriceMedian = historyTotalPricePerUnitValue / (historyData.entries.length || 1);
     const { currentPrice } = userServerData;
     const priceDiff = historyPriceMedian - currentPrice;
     const marketEvolution = Number(((priceDiff / currentPrice) * 100).toFixed(2));
