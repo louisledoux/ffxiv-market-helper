@@ -14,10 +14,6 @@ export class GraphqlService implements GqlOptionsFactory {
     return {
       autoSchemaFile: true,
       path: `/${END_POINT!}`,
-      cors: {
-        origin: '*',
-        credentials: true,
-      },
       context: appContext,
       // import schemaDirectives here if needed
       // import directive resolvers here if needed
